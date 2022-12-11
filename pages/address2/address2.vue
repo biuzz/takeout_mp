@@ -13,7 +13,7 @@
 					</view>
 					<view class="divUserPhone">
 						<text>{{item.consignee}}</text>
-						<text>{{item.gender === '0' ? '女士' : '先生'}}</text>
+						<text>{{item.sex === '0' ? '女士' : '先生'}}</text>
 						<text>{{item.phone}}</text>
 					</view>
 					<image src="../../static/images/edit.png" @click.stop.prevent="toAddressEditPage(item)" />

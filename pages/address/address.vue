@@ -12,7 +12,7 @@
 					</view>
 					<view class="divUserPhone">
 						<text>{{item.consignee}}</text>
-						<text>{{item.gender === '0' ? '女士' : '先生'}}</text>
+						<text>{{item.sex === '0' ? '女士' : '先生'}}</text>
 						<text>{{item.phone}}</text>
 					</view>
 					<image src="../../static/images/edit.png" @click.stop.prevent="toAddressEditPage(item)" />
@@ -80,6 +80,7 @@
 				const res = await addressListApi()
 				if (res.code === 1) {				
 					this.addressList = res.data
+					this.show = false
 					if(this.addressList.length < 1){
 						this.show = true
 					}
