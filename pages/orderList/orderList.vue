@@ -34,6 +34,9 @@
 							<view class="btn" v-if="order.status === 4">
 								<view class="btnAgain" @click="addOrderAgain(order)">再来一单</view>
 							</view>
+							<view class="btn" v-if="order.status === 2">
+								<view class="btnAgain" @click="cancelOrder(order)">取消订单</view>
+							</view>
 							<view class="foot"></view>
 						</view>
 
@@ -67,7 +70,8 @@
 		orderListApi,
 		orderPagingApi,
 		orderAgainApi,
-		deleteOrderApi
+		deleteOrderApi,
+		cancelOrderApi
 
 	} from '../../api/orderList.js'
 	export default {
@@ -187,8 +191,7 @@
 				// 重新加载数据
 				// 将 loading 设置为 true，表示处于加载状态
 				this.loading = true;
-				console.log("正在调用onload")
-				this.onLoad()
+				//setTimeout(() =>{this.onShow()}, 10);
 
 			},
 			async addOrderAgain(order) {
@@ -200,6 +203,26 @@
 						url: '/pages/index/index'
 					})
 
+				} else {
+					return uni.$showMsg(res.msg)
+				}
+			},
+			async cancelOrder(order) {
+				const res = await cancelOrderApi({
+					id: order.id,
+					status: 5
+				})
+				if (res.code === 1) {
+					this.refreshing = true;
+					this.finished = false;
+					this.loading = true;
+					this.paging.page = 1
+					this.orderList = []
+					this.getList()
+					setTimeout(() => {
+						this.loading = false;
+					}, 500);
+					
 				} else {
 					return uni.$showMsg(res.msg)
 				}

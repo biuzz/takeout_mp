@@ -73,3 +73,19 @@ export const deleteOrderApi = (id) =>{
 	});
 }
 
+export const cancelOrderApi = (payload) =>{
+	return new Promise((resolve, reject) => {
+	    requestUtil({
+	        url: 'mp/order',
+	        method: 'put',
+	        data: payload
+	    }).then((res) => {
+	        console.log(res.data)
+	        resolve(res)
+	    }).catch((err) => {
+	        reject(err)
+	    })
+	});
+}
+
+
