@@ -30,12 +30,12 @@
 				finishTime: ''
 			};
 		},
-		onUnload() {
+		/* onUnload() {
 			uni.switchTab({
 				url:'/pages/index/index'
 			})
 			
-		},
+		}, */
 		computed: {},
 		created() {
 			this.getFinishTime()

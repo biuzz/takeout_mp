@@ -160,7 +160,7 @@
 
 		},
 		onShow() {
-			//this.initData()
+			this.initData()
 		},
 		mounted() {
 			const sysInfo = uni.getSystemInfoSync()
@@ -172,6 +172,7 @@
 			initData() {
 				console.log(this.user.id)
 				if (this.user.id) {
+					this.show = false
 					this.getLatestOrder()
 				}else{
 					this.show = true
