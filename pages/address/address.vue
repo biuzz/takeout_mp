@@ -2,9 +2,10 @@
 	<view>
 		<view class="address">
 			<view class="divContent">
-				<u-empty :show="show"  text="地址为空" mode="data" marginTop="50%" icon="http://cdn.uviewui.com/uview/empty/data.png">
+				<u-empty :show="show" text="地址为空" mode="data" marginTop="50%"
+					icon="http://cdn.uviewui.com/uview/empty/data.png">
 				</u-empty>
-				<view class="divItem" v-for="(item,index) in addressList" :key="index" @click.capture="itemClick(item)">
+				<view class="divItem" v-for="(item,index) in addressList" :key="index" @click="itemClick(item)">
 					<view class="divAddress">
 						<text
 							:class="{spanCompany:item.label === '公司',spanHome:item.label === '家',spanSchool:item.label === '学校'}">{{item.label}}</text>
@@ -15,12 +16,13 @@
 						<text>{{item.sex === '0' ? '女士' : '先生'}}</text>
 						<text>{{item.phone}}</text>
 					</view>
-					<image src="../../static/images/edit.png" @click.stop.prevent="toAddressEditPage(item)" />
+					<image src="../../static/images/edit.png" @tap.stop.prevent="toAddressEditPage(item)" />
 					<view class="divSplit"></view>
 					<view class="divDefault">
-						<image src="../../static/images/checked_true.png" v-if="item.isDefault === 1" @click.stop.prevent="setDefaultAddress(item)">
+						<image src="../../static/images/checked_true.png" v-if="item.isDefault === 1"
+							@tap.stop.prevent="setDefaultAddress(item)">
 							<image src="../../static/images/checked_false.png"
-								@click.stop.prevent="setDefaultAddress(item)" v-else>设为默认地址
+								@tap.stop.prevent="setDefaultAddress(item)" v-else>设为默认地址
 					</view>
 				</view>
 			</view>
@@ -42,11 +44,18 @@
 	import regeneratorRuntime, {
 		async
 	} from '../../lib/runtime/runtime';
-	import {addressFindOneApi,updateAddressApi,addAddressApi,deleteAddressApi,addressListApi} from '../../api/address.js'
+	import {
+		setDefaultAddressApi,
+		addressFindOneApi,
+		updateAddressApi,
+		addAddressApi,
+		deleteAddressApi,
+		addressListApi
+	} from '../../api/address.js'
 	export default {
 		data() {
 			return {
-				show:false,
+				show: false,
 				addressList: [
 
 				],
@@ -54,7 +63,7 @@
 		},
 		computed: {},
 		created() {
-			
+
 		},
 		mounted() {},
 		onShow() {
@@ -66,25 +75,25 @@
 			},
 			toAddressEditPage(item) {
 				uni.navigateTo({
-					url:"/pages/addressEdit2/addressEdit2?id="+item.id,
-					
-				})				
+					url: "/pages/addressEdit/addressEdit?id=" + item.id,
+
+				})
 			},
 			toAddressCreatePage() {
 				uni.navigateTo({
-					url:'/pages/addressEdit/addressEdit'
+					url: '/pages/addressCreate/addressCreate'
 				})
-				
+
 			},
 			async initData() {
 				const res = await addressListApi()
-				if (res.code === 1) {				
+				if (res.code === 1) {
 					this.addressList = res.data
 					this.show = false
-					if(this.addressList.length < 1){
+					if (this.addressList.length < 1) {
 						this.show = true
 					}
-				} else {				
+				} else {
 					this.$message.error(res.msg)
 				}
 			},
@@ -101,12 +110,12 @@
 				}
 			},
 			itemClick(item) {
-				
+
 				let pages = getCurrentPages()
 				let prevPage = pages[pages.length - 2]
 				console.log(prevPage)
 				prevPage.setData({
-					address:item
+					address: item
 				})
 				// prevPage.data.address.consignee = item.consignee
 				// prevPage.data.address.detail = item.detail
@@ -114,7 +123,7 @@
 				// prevPage.data.address.gender = item.gender
 				//prevPage.data.address = item
 				//表示是从订单页面跳转过来的
-				
+
 				uni.navigateBack()
 			}
 

@@ -41,7 +41,7 @@
             
         }
         ,{
-            "path" : "pages/addressEdit/addressEdit",
+            "path" : "pages/addressCreate/addressCreate",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "新增地址",
@@ -71,7 +71,7 @@
             
         }
         ,{
-            "path" : "pages/addressEdit2/addressEdit2",
+            "path" : "pages/addressEdit/addressEdit",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "编辑地址",
@@ -80,16 +80,16 @@
             }
             
         }
-        ,{
-            "path" : "pages/address2/address2",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "地址管理",
-                "enablePullDownRefresh": false,
-				"navigationBarBackgroundColor": "#ffc200"
-            }
+    //     ,{
+    //         "path" : "pages/address2/address2",
+    //         "style" :                                                                                    
+    //         {
+    //             "navigationBarTitleText": "地址管理",
+    //             "enablePullDownRefresh": false,
+				// "navigationBarBackgroundColor": "#ffc200"
+    //         }
             
-        }
+    //     }
     ],
 	"subPackages": [
 		{

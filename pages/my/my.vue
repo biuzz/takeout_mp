@@ -352,11 +352,14 @@
 			},
 			toAddress() {
 				uni.navigateTo({
-					url: '/pages/address2/address2'
+					url: '/pages/address/address'
 				})
 			},
 			toOrder() {
-				uni.navigateTo({
+				/* uni.navigateTo({
+					url: '/pages/orderList/orderList'
+				}) */
+				uni.switchTab({
 					url: '/pages/orderList/orderList'
 				})
 			},
